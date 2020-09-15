@@ -7,73 +7,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import CustomizedSnackbars from './components/Snackbar';
 import CompanyList from './scenes/CompanyList';
 import CompanyDetails from './scenes/CompanyDetails';
+import { companyData } from './services/constants';
 
 function App() {
   const dispatch = useDispatch();
   const snackbarText = useSelector((state) => state.root.snackbarText);
   const snackbarType = useSelector((state) => state.root.snackbarType);
 
-  const companyData = [
-    {
-      id: 0,
-      companyName: 'Dell',
-      contactDetails: [
-        { id: 0, name: 'Person1' },
-        { id: 1, name: 'Person 2' },
-      ],
-      companyDesc: 'A computer manufacturing company',
-    },
-    {
-      id: 0,
-      companyName: 'HP',
-      contactDetails: [
-        { id: 0, name: 'Person1' },
-        { id: 1, name: 'Person 2' },
-      ],
-      companyDesc: 'A computer manufacturing company',
-    },
-    {
-      id: 0,
-      companyName: 'Lenovo',
-      contactDetails: [
-        { id: 0, name: 'Person1' },
-        { id: 1, name: 'Person 2' },
-      ],
-      companyDesc: 'A computer manufacturing company',
-    },
-    {
-      id: 0,
-      companyName: 'Acer',
-      contactDetails: [
-        { id: 0, name: 'Person1' },
-        { id: 1, name: 'Person 2' },
-      ],
-      companyDesc: 'A computer manufacturing company',
-    },
-    {
-      id: 0,
-      companyName: 'Asus',
-      contactDetails: [
-        { id: 0, name: 'Person1' },
-        { id: 1, name: 'Person 2' },
-      ],
-      companyDesc: 'A computer manufacturing company',
-    },
-    {
-      id: 0,
-      companyName: 'Razer Blade',
-      contactDetails: [
-        { id: 0, name: 'Person1' },
-        { id: 1, name: 'Person 2' },
-      ],
-      companyDesc: 'A computer manufacturing company',
-    },
-  ];
-
-  const insertData = (data) => {
+  const insertData = () => {
     dispatch({
       type: INSERT_DATA,
-      data: data,
+      data: companyData,
     });
   };
 
@@ -88,7 +32,7 @@ function App() {
   };
 
   useEffect(() => {
-    insertData(companyData);
+    insertData();
   });
 
   return (

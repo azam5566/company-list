@@ -33,11 +33,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Card({ className, title, subtitle, content }) {
+export default function Card({ className, title, subtitle, content, ...rest }) {
   const classes = useStyles();
 
   return (
-    <div className={`${classes.card} ${className}`}>
+    <div className={`${classes.card} ${className}`} {...rest}>
       <div className={classes.cardTitle}>
         <h3 style={{ marginBottom: 20 }}>{title}</h3>
         <span>{subtitle}</span>

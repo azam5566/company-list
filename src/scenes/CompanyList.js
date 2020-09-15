@@ -10,6 +10,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { useSelector } from 'react-redux';
 import store from '../services/store';
 import Card from '../components/Card';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,10 +70,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CompanyList() {
   const classes = useStyles();
+  const history = useHistory();
   const companyList = useSelector((store) => store.root.data);
 
   const [searchResult, setSearchResult] = useState([]);
   const [searchKey, setSearchKey] = useState('');
+
+  const handleCardClick = (company) => {
+    history.push({ pathname: '/details', state: company });
+  };
 
   const handleSearch = (key) => {
     setSearchKey(key);
@@ -128,6 +134,7 @@ export default function CompanyList() {
               key={index}
               title={company.companyName}
               subtitle={company.companyDesc}
+              onClick={() => handleCardClick(company)}
             />
           )
         )}

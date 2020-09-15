@@ -118,7 +118,7 @@ export default function CompanyList() {
         type: SET_SNACKBAR_TEXT,
         data: {
           text: `Sorry No Companies Found :(`,
-          type: 'warning',
+          type: 'error',
         },
       });
     }

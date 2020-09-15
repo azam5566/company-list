@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
+import Button from './Button';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -20,6 +21,8 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 0,
     paddingBottom: 18,
     marginBottom: 30,
+    display: 'flex',
+    flexDirection: 'column',
     '& h3': {
       fontSize: 20,
       fontWeight: 500,
@@ -33,14 +36,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Card({ className, title, subtitle, content, ...rest }) {
+export default function Card({
+  className,
+  title,
+  subtitle,
+  content,
+  isReveal,
+  ...rest
+}) {
   const classes = useStyles();
+  const [isRevealed, setIsRevealed] = useState(false);
 
   return (
     <div className={`${classes.card} ${className}`} {...rest}>
       <div className={classes.cardTitle}>
         <h3 style={{ marginBottom: 20 }}>{title}</h3>
-        <span>{subtitle}</span>
+        {!isReveal && <span>{subtitle}</span>}
+        {isReveal && isRevealed && <span>{subtitle}</span>}
+        {isReveal && !isRevealed && (
+          <Button style={{ marginTop: 10 }} onClick={() => setIsRevealed(true)}>
+            Reveal Number
+          </Button>
+        )}
       </div>
       <div className={classes.cardContent}>
         <div>{content}</div>

@@ -120,7 +120,7 @@ export default function CompanyDetails() {
       <Grid
         item
         xs={12}
-        style={{ flexWrap: 'wrap', display: 'flex' }}
+        style={{ flexWrap: 'wrap', display: 'flex', justifyContent: 'center' }}
         direction='row'
       >
         {[company.contactDetails, searchResult][

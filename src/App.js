@@ -43,7 +43,7 @@ function App() {
         <Route exact path='/details' component={CompanyDetails} />
       </Switch>
       <CustomizedSnackbars
-        text={SET_SNACKBAR_TEXT}
+        text={snackbarText}
         open={!!snackbarText}
         handleClose={handleClose}
         type={snackbarType}

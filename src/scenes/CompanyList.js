@@ -7,8 +7,8 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import { useSelector } from 'react-redux';
-import store from '../services/store';
+import { useSelector, useDispatch } from 'react-redux';
+import store, { SET_SNACKBAR_TEXT } from '../services/store';
 import Card from '../components/Card';
 import { useHistory } from 'react-router-dom';
 
@@ -71,6 +71,7 @@ const useStyles = makeStyles((theme) => ({
 export default function CompanyList() {
   const classes = useStyles();
   const history = useHistory();
+  const dispatch = useDispatch();
   const companyList = useSelector((store) => store.root.data);
 
   const [searchResult, setSearchResult] = useState([]);
@@ -95,6 +96,32 @@ export default function CompanyList() {
       }
     });
     setSearchResult(result);
+
+    if (key.length === 0) {
+      dispatch({
+        type: SET_SNACKBAR_TEXT,
+        data: {
+          text: `Showing All Companies`,
+          type: 'warning',
+        },
+      });
+    } else if (result.length > 0) {
+      dispatch({
+        type: SET_SNACKBAR_TEXT,
+        data: {
+          text: `${result.length} Companies Found :)`,
+          type: 'success',
+        },
+      });
+    } else if (result.length === 0) {
+      dispatch({
+        type: SET_SNACKBAR_TEXT,
+        data: {
+          text: `Sorry No Companies Found :(`,
+          type: 'warning',
+        },
+      });
+    }
   };
 
   return (
